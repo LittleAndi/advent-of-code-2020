@@ -14,15 +14,8 @@ namespace day01
                 .ToArray<int>();
 
             PartOne(lines);
-
             PartTwo(lines);
         }
-
-        private static void PartTwo(int[] lines)
-        {
-            throw new NotImplementedException();
-        }
-
         private static void PartOne(int[] lines)
         {
             for (int i = 0; i < lines.Length; i++)
@@ -34,6 +27,25 @@ namespace day01
                         Console.WriteLine($"{lines[i]} + {lines[j]} = {lines[i] + lines[j]}");
                         Console.WriteLine($"{lines[i]} * {lines[j]} = {lines[i] * lines[j]}");
                         return;
+                    }
+                }
+            }
+        }
+        private static void PartTwo(int[] lines)
+        {
+            for (int i = 0; i < lines.Length; i++)
+            {
+                for (int j = i + 1; j < lines.Length; j++)
+                {
+                    for (int k = j + 1; k < lines.Length; k++)
+                    {
+                        if (lines[i] + lines[j] + lines[k] == 2020)
+                        {
+                            Console.WriteLine($"{lines[i]} + {lines[j]} + {lines[k]} = {lines[i] + lines[j] + lines[k]}");
+                            Console.WriteLine($"{lines[i]} * {lines[j]} * {lines[k]} = {lines[i] * lines[j] * lines[k]}");
+                            return;
+                        }
+                        
                     }
                 }
             }

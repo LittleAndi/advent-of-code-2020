@@ -25,7 +25,7 @@ namespace day02tests
         [InlineData("1-3 b: cdefg", false)]
         [InlineData("2-9 c: ccccccccc", true)]
         [InlineData("10-16 c: ccccqccchcccccjlc", true)]
-        public void TestValidPassword(string entry, bool validPassword)
+        public void TestValidPasswordFromOldJob(string entry, bool validPassword)
         {
             var passwordDatabaseEntry = new day02.PasswordDatabaseEntryFromOldJob(entry);
             passwordDatabaseEntry.ValidPassword.ShouldBe(validPassword);
@@ -45,6 +45,17 @@ namespace day02tests
             passwordDatabaseEntry.PasswordPolicyLetterPositionTwo.ShouldBe(letterPositionTwo);
             passwordDatabaseEntry.PasswordPolicyLetterOne.ShouldBe(letterOne);
             passwordDatabaseEntry.PasswordPolicyLetterTwo.ShouldBe(letterTwo);
+        }
+
+        [Theory]
+        [InlineData("1-3 a: abcde", true)]
+        [InlineData("1-3 b: cdefg", false)]
+        [InlineData("2-9 c: ccccccccc", false)]
+        [InlineData("10-16 c: ccccqccchcccccjlc", true)]
+        public void TestValidPassword(string entry, bool validPassword)
+        {
+            var passwordDatabaseEntry = new day02.PasswordDatabaseEntry(entry);
+            passwordDatabaseEntry.ValidPassword.ShouldBe(validPassword);
         }
     }
 }

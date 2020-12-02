@@ -19,5 +19,16 @@ namespace day02tests
             passwordDatabaseEntry.PasswordPolicyLetterMinOccur.ShouldBe(letterMinOccur);
             passwordDatabaseEntry.PasswordPolicyLetterMaxOccur.ShouldBe(letterMaxOccur);
         }
+
+        [Theory]
+        [InlineData("1-3 a: abcde", true)]
+        [InlineData("1-3 b: cdefg", false)]
+        [InlineData("2-9 c: ccccccccc", true)]
+        [InlineData("10-16 c: ccccqccchcccccjlc", true)]
+        public void TestValidPassword(string entry, bool validPassword)
+        {
+            var passwordDatabaseEntry = new day02.PasswordDatabaseEntry(entry);
+            passwordDatabaseEntry.ValidPassword.ShouldBe(validPassword);
+        }        
     }
 }

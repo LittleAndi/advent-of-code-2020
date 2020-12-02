@@ -12,9 +12,13 @@ namespace day02
 
     public class PasswordDatabaseEntry
     {
+        public PasswordDatabaseEntry(string entry)
+        {
+            this.PasswordPolicyAndPassword = entry;
+        }
         public string PasswordPolicyAndPassword { get; set; }
         public string Password => "";
-        public char PasswordPolicyLetter => null;
+        public char PasswordPolicyLetter => char.MinValue;
         public int PasswordPolicyLetterMinOccur = int.MinValue;
         public int PasswordPolicyLetterMaxOccur = int.MaxValue;
     }

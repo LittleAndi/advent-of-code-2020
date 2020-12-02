@@ -11,7 +11,7 @@ namespace day02tests
         [InlineData("1-3 b: cdefg", "cdefg", 'b', 1, 3)]
         [InlineData("2-9 c: ccccccccc", "ccccccccc", 'c', 2, 9)]
         [InlineData("10-16 c: ccccqccchcccccjlc", "ccccqccchcccccjlc", 'c', 10, 16)]
-        public void TestPasswordDatabaseEntry(string entry, string password, char letter, int letterMinOccur, int letterMaxOccur)
+        public void TestPasswordDatabaseEntryFromOldJob(string entry, string password, char letter, int letterMinOccur, int letterMaxOccur)
         {
             var passwordDatabaseEntry = new day02.PasswordDatabaseEntryFromOldJob(entry);
             passwordDatabaseEntry.Password.ShouldBe(password);
@@ -29,6 +29,20 @@ namespace day02tests
         {
             var passwordDatabaseEntry = new day02.PasswordDatabaseEntryFromOldJob(entry);
             passwordDatabaseEntry.ValidPassword.ShouldBe(validPassword);
-        }        
+        }
+
+        [Theory]
+        [InlineData("1-3 a: abcde", "abcde", 'a', 1, 3)]
+        [InlineData("1-3 b: cdefg", "cdefg", 'b', 1, 3)]
+        [InlineData("2-9 c: ccccccccc", "ccccccccc", 'c', 2, 9)]
+        [InlineData("10-16 c: ccccqccchcccccjlc", "ccccqccchcccccjlc", 'c', 10, 16)]
+        public void TestPasswordDatabaseEntry(string entry, string password, char letter, int letterPositionOne, int letterPositionTwo)
+        {
+            var passwordDatabaseEntry = new day02.PasswordDatabaseEntry(entry);
+            passwordDatabaseEntry.Password.ShouldBe(password);
+            passwordDatabaseEntry.PasswordPolicyLetter.ShouldBe(letter);
+            passwordDatabaseEntry.PasswordPolicyLetterPositionOne.ShouldBe(letterPositionOne);
+            passwordDatabaseEntry.PasswordPolicyLetterPositionTwo.ShouldBe(letterPositionTwo);
+        }
     }
 }

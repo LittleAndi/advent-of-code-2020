@@ -52,7 +52,7 @@ namespace day02
         public int PasswordPolicyLetterPositionTwo => int.Parse(matchGroups[2].Value);
         public char PasswordPolicyLetterOne => Password[PasswordPolicyLetterPositionOne - 1];
         public char PasswordPolicyLetterTwo => Password[PasswordPolicyLetterPositionTwo - 1];
-        public bool ValidPassword => false;
+        public bool ValidPassword => (PasswordPolicyLetterOne == PasswordPolicyLetter) ^ (PasswordPolicyLetterTwo == PasswordPolicyLetter);
     }
 
 }

@@ -31,6 +31,6 @@ namespace day02
         public char PasswordPolicyLetter => matchGroups[3].Value.ToCharArray()[0];
         public int PasswordPolicyLetterMinOccur => int.Parse(matchGroups[1].Value);
         public int PasswordPolicyLetterMaxOccur => int.Parse(matchGroups[2].Value);
-        public bool ValidPassword => false;
+        public bool ValidPassword => (Password.Count(p => p == PasswordPolicyLetter) >= PasswordPolicyLetterMinOccur) && (Password.Count(p => p == PasswordPolicyLetter) <= PasswordPolicyLetterMaxOccur);
     }
 }

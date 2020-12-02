@@ -10,6 +10,7 @@ namespace day02tests
         [InlineData("1-3 a: abcde", "abcde", 'a', 1, 3)]
         [InlineData("1-3 b: cdefg", "cdefg", 'b', 1, 3)]
         [InlineData("2-9 c: ccccccccc", "ccccccccc", 'c', 2, 9)]
+        [InlineData("10-16 c: ccccqccchcccccjlc", "ccccqccchcccccjlc", 'c', 10, 16)]
         public void TestPasswordDatabaseEntry(string entry, string password, char letter, int letterMinOccur, int letterMaxOccur)
         {
             var passwordDatabaseEntry = new day02.PasswordDatabaseEntry(entry);

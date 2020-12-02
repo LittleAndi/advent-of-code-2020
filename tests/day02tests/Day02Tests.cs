@@ -36,13 +36,15 @@ namespace day02tests
         [InlineData("1-3 b: cdefg", "cdefg", 'b', 1, 3)]
         [InlineData("2-9 c: ccccccccc", "ccccccccc", 'c', 2, 9)]
         [InlineData("10-16 c: ccccqccchcccccjlc", "ccccqccchcccccjlc", 'c', 10, 16)]
-        public void TestPasswordDatabaseEntry(string entry, string password, char letter, int letterPositionOne, int letterPositionTwo)
+        public void TestPasswordDatabaseEntry(string entry, string password, char letter, int letterPositionOne, int letterPositionTwo, char letterOne, char letterTwo)
         {
             var passwordDatabaseEntry = new day02.PasswordDatabaseEntry(entry);
             passwordDatabaseEntry.Password.ShouldBe(password);
             passwordDatabaseEntry.PasswordPolicyLetter.ShouldBe(letter);
             passwordDatabaseEntry.PasswordPolicyLetterPositionOne.ShouldBe(letterPositionOne);
             passwordDatabaseEntry.PasswordPolicyLetterPositionTwo.ShouldBe(letterPositionTwo);
+            passwordDatabaseEntry.PasswordPolicyLetterOne.ShouldBe(letterOne);
+            passwordDatabaseEntry.PasswordPolicyLetterTwo.ShouldBe(letterTwo);
         }
     }
 }

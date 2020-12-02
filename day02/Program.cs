@@ -18,7 +18,7 @@ namespace day02
 
     public class PasswordDatabaseEntry
     {
-        Regex rx = new Regex(@"(\d)-(\d) ([a-z]): (\w+)");
+        Regex rx = new Regex(@"(\d+)-(\d+) ([a-z]): (\w+)");
         GroupCollection matchGroups;
         public PasswordDatabaseEntry(string entry)
         {

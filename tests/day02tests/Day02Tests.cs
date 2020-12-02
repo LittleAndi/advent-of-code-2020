@@ -13,7 +13,7 @@ namespace day02tests
         [InlineData("10-16 c: ccccqccchcccccjlc", "ccccqccchcccccjlc", 'c', 10, 16)]
         public void TestPasswordDatabaseEntry(string entry, string password, char letter, int letterMinOccur, int letterMaxOccur)
         {
-            var passwordDatabaseEntry = new day02.PasswordDatabaseEntry(entry);
+            var passwordDatabaseEntry = new day02.PasswordDatabaseEntryFromOldJob(entry);
             passwordDatabaseEntry.Password.ShouldBe(password);
             passwordDatabaseEntry.PasswordPolicyLetter.ShouldBe(letter);
             passwordDatabaseEntry.PasswordPolicyLetterMinOccur.ShouldBe(letterMinOccur);
@@ -27,7 +27,7 @@ namespace day02tests
         [InlineData("10-16 c: ccccqccchcccccjlc", true)]
         public void TestValidPassword(string entry, bool validPassword)
         {
-            var passwordDatabaseEntry = new day02.PasswordDatabaseEntry(entry);
+            var passwordDatabaseEntry = new day02.PasswordDatabaseEntryFromOldJob(entry);
             passwordDatabaseEntry.ValidPassword.ShouldBe(validPassword);
         }        
     }

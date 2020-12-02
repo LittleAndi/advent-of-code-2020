@@ -9,20 +9,20 @@ namespace day02
     {
         static void Main(string[] args)
         {
-            var passwordDatabaseEntries = File.ReadAllLines("input.txt")
+            var passwordDatabaseEntriesPartOne = File.ReadAllLines("input.txt")
                 .Where(l => !string.IsNullOrWhiteSpace(l))
-                .Select(l => new PasswordDatabaseEntry(l))
+                .Select(l => new PasswordDatabaseEntryFromOldJob(l))
                 .ToList();
 
-            Console.WriteLine($"Valid passwords: {passwordDatabaseEntries.Count(p => p.ValidPassword)}");
+            Console.WriteLine($"Part one valid passwords: {passwordDatabaseEntriesPartOne.Count(p => p.ValidPassword)}");
         }
     }
 
-    public class PasswordDatabaseEntry
+    public class PasswordDatabaseEntryFromOldJob
     {
         Regex rx = new Regex(@"(\d+)-(\d+) ([a-z]): (\w+)");
         GroupCollection matchGroups;
-        public PasswordDatabaseEntry(string entry)
+        public PasswordDatabaseEntryFromOldJob(string entry)
         {
             this.PasswordPolicyAndPassword = entry;
             var matches = rx.Matches(this.PasswordPolicyAndPassword);

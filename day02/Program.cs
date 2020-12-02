@@ -15,6 +15,13 @@ namespace day02
                 .ToList();
 
             Console.WriteLine($"Part one valid passwords: {passwordDatabaseEntriesPartOne.Count(p => p.ValidPassword)}");
+
+            var passwordDatabaseEntriesPartTwo = File.ReadAllLines("input.txt")
+                .Where(l => !string.IsNullOrWhiteSpace(l))
+                .Select(l => new PasswordDatabaseEntry(l))
+                .ToList();
+
+            Console.WriteLine($"Part two valid passwords: {passwordDatabaseEntriesPartTwo.Count(p => p.ValidPassword)}");
         }
     }
 

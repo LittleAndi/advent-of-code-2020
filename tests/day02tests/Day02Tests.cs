@@ -32,10 +32,10 @@ namespace day02tests
         }
 
         [Theory]
-        [InlineData("1-3 a: abcde", "abcde", 'a', 1, 3)]
-        [InlineData("1-3 b: cdefg", "cdefg", 'b', 1, 3)]
-        [InlineData("2-9 c: ccccccccc", "ccccccccc", 'c', 2, 9)]
-        [InlineData("10-16 c: ccccqccchcccccjlc", "ccccqccchcccccjlc", 'c', 10, 16)]
+        [InlineData("1-3 a: abcde", "abcde", 'a', 1, 3, 'a', 'c')]
+        [InlineData("1-3 b: cdefg", "cdefg", 'b', 1, 3, 'c', 'e')]
+        [InlineData("2-9 c: ccccccccc", "ccccccccc", 'c', 2, 9, 'c', 'c')]
+        [InlineData("10-16 c: ccccqccchcccccjlc", "ccccqccchcccccjlc", 'c', 10, 16, 'c', 'l')]
         public void TestPasswordDatabaseEntry(string entry, string password, char letter, int letterPositionOne, int letterPositionTwo, char letterOne, char letterTwo)
         {
             var passwordDatabaseEntry = new day02.PasswordDatabaseEntry(entry);

@@ -50,6 +50,8 @@ namespace day02
         public char PasswordPolicyLetter => matchGroups[3].Value.ToCharArray()[0];
         public int PasswordPolicyLetterPositionOne => int.Parse(matchGroups[1].Value);
         public int PasswordPolicyLetterPositionTwo => int.Parse(matchGroups[2].Value);
+        public char PasswordPolicyLetterOne => Password[PasswordPolicyLetterPositionOne - 1];
+        public char PasswordPolicyLetterTwo => Password[PasswordPolicyLetterPositionTwo - 1];
         public bool ValidPassword => false;
     }
 

@@ -9,10 +9,12 @@ namespace day02
     {
         static void Main(string[] args)
         {
-            var lines = File.ReadAllLines("input.txt")
+            var passwordDatabaseEntries = File.ReadAllLines("input.txt")
                 .Where(l => !string.IsNullOrWhiteSpace(l))
                 .Select(l => new PasswordDatabaseEntry(l))
                 .ToList();
+
+            Console.WriteLine($"Valid passwords: {passwordDatabaseEntries.Count(p => p.ValidPassword)}");
         }
     }
 

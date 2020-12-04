@@ -14,7 +14,16 @@ namespace day03
 
             var trees = GetTreesEncounterd(lines, 3, 1);
 
-            System.Console.WriteLine($"{trees} trees encounterd");
+            System.Console.WriteLine($"Part one: {trees} trees encounterd");
+
+            var encounterdTreesProduct = 1;
+            encounterdTreesProduct *= GetTreesEncounterd(lines, 1, 1);
+            encounterdTreesProduct *= GetTreesEncounterd(lines, 3, 1);
+            encounterdTreesProduct *= GetTreesEncounterd(lines, 5, 1);
+            encounterdTreesProduct *= GetTreesEncounterd(lines, 7, 1);
+            encounterdTreesProduct *= GetTreesEncounterd(lines, 1, 2);
+
+            System.Console.WriteLine($"Part two: Product of trees encounterd {encounterdTreesProduct}");
         }
 
         static int GetTreesEncounterd(string[] lines, int movX, int movY)

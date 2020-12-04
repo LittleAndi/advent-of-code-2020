@@ -1,3 +1,6 @@
+git checkout main
+git pull
+git checkout -b %1
 dotnet new console -n %1
 dotnet sln add %1/%1.csproj
 cd tests

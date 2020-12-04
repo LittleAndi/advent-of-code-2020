@@ -12,22 +12,29 @@ namespace day03
                 .Where(l => !string.IsNullOrWhiteSpace(l))
                 .ToArray();
 
+            var trees = GetTreesEncounterd(lines, 3, 1);
+
+            System.Console.WriteLine($"{trees} trees encounterd");
+        }
+
+        static int GetTreesEncounterd(string[] lines, int movX, int movY)
+        {
             var lineLength = lines.First().Length;
-            var x = 0 + 3;
-            var y = 0 + 1;
+            var x = movX;
+            var y = movY;
             var trees = 0;
 
             do
             {
                 if (lines[y][x].Equals('#')) trees++;
 
-                x += 3;
-                y += 1;
+                x += movX;
+                y += movY;
 
                 if (x > lineLength - 1) x -= lineLength;
             } while (y < lines.Count());
 
-            System.Console.WriteLine($"{trees} trees encounterd");
+            return trees;
         }
     }
 }

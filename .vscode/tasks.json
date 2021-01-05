@@ -20,7 +20,7 @@
       "args": [
         "watch",
         "run",
-        "${workspaceFolder}/day13/day13.csproj",
+        "${workspaceFolder}/day14/day14.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -33,7 +33,7 @@
       "args": [
         "watch",
         "run",
-        "${workspaceFolder}/tests/day13tests/day13tests.csproj",
+        "${workspaceFolder}/tests/day14tests/day14tests.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],

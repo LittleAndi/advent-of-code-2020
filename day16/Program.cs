@@ -9,4 +9,12 @@ namespace day16
             Console.WriteLine("Hello World!");
         }
     }
+
+    public class TicketValidator
+    {
+        public bool IsTicketValid(int[] ticketValues)
+        {
+            return false;
+        }
+    }
 }

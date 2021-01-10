@@ -7,11 +7,18 @@ namespace day16tests
 {
     public class Day16Tests
     {
-        [Fact]
-        public void TestTicketValidation()
+        [Theory]
+        [InlineData(true, 7, 3, 47)]
+        [InlineData(false, 40, 4, 50)]
+        [InlineData(false, 55, 2, 20)]
+        [InlineData(false, 38, 6, 12)]
+        public void TestTicketValidation(bool result, params int[] ticketInfo)
         {
             var ticketValidator = new TicketValidator();
-            ticketValidator.IsTicketValid(new int[] { 7, 3, 47 }).ShouldBe(true);
+            ticketValidator.AddRule("class", 1, 3, 5, 7);
+            ticketValidator.AddRule("row", 6, 11, 33, 44);
+            ticketValidator.AddRule("seat", 13, 40, 45, 50);
+            ticketValidator.IsTicketValid(ticketInfo).ShouldBe(result);
         }
     }
 }

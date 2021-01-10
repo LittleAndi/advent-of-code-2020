@@ -16,5 +16,9 @@ namespace day16
         {
             return false;
         }
+        public void AddRule(string field, int start1, int end1, int start2, int end2)
+        {
+
+        }
     }
 }

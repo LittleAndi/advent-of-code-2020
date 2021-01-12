@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -33,15 +34,27 @@ namespace day16
 
     public class TicketValidator
     {
+        List<Expression<Func<int, bool>>> rules = new List<Expression<Func<int, bool>>>();
+        public TicketValidator()
+        {
+        }
         public bool IsTicketValid(int[] ticketValues)
         {
-            return false;
+            foreach (var rule in rules)
+            {
+                if (!(ticketValues.AsQueryable().Where(rule).Count() > 0)) return false;
+            }
+            return true;
         }
         public void AddRule(string field, int start1, int end1, int start2, int end2)
         {
-
+            var predicate = PredicateBuilder.False<int>();
+            predicate = predicate.Or(i => i >= start1 && i <= end1);
+            predicate = predicate.Or(i => i >= start2 && i <= end2);
+            rules.Add(predicate);
         }
     }
+    // http://www.albahari.com/nutshell/predicatebuilder.aspx
     public static class PredicateBuilder
     {
         public static Expression<Func<T, bool>> True<T>() { return f => true; }

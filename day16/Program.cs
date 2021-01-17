@@ -51,6 +51,7 @@ namespace day16
     {
         List<Expression<Func<int, bool>>> rules = new List<Expression<Func<int, bool>>>();
         List<int> ticketScanningError = new List<int>();
+        public int TicketScanningErrorRate => ticketScanningError.Sum();
         public TicketValidator()
         {
         }

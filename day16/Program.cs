@@ -29,22 +29,50 @@ namespace day16
                     int.Parse(fieldMatch.Groups["end2"].Value));
                 line++;
             }
+
+            line += 5;
+
+            var k = lines
+                        .Skip(line)
+                        .Where(l => !string.IsNullOrWhiteSpace(l));
+
+            foreach (var l in k)
+            {
+                var t = l.Split(',').Select(c => int.Parse(c)).ToArray();
+                System.Console.WriteLine(ticketValidator.IsTicketValid(t));
+            }
+            //.Select(l => ticketValidator.IsTicketValid(l.Split(',').Select(c => int.Parse(c)).ToArray()));
+
+            //System.Console.WriteLine(k.Where(r => r).Count());
         }
     }
 
     public class TicketValidator
     {
         List<Expression<Func<int, bool>>> rules = new List<Expression<Func<int, bool>>>();
+        List<int> ticketScanningError = new List<int>();
         public TicketValidator()
         {
         }
         public bool IsTicketValid(int[] ticketValues)
         {
-            foreach (var rule in rules)
+            bool totalResult = true;
+            for (int i = 0; i < ticketValues.Length; i++)
             {
-                if (!(ticketValues.AsQueryable().Where(rule).Count() > 0)) return false;
+                bool result = false;
+                var t = new int[] { ticketValues[i] }.AsQueryable();
+                foreach (var rule in rules)
+                {
+                    if (t.Where(rule).Count() == 1) result = true;
+                }
+
+                if (!result)
+                {
+                    ticketScanningError.AddRange(t);
+                    totalResult = false;
+                }
             }
-            return true;
+            return totalResult;
         }
         public void AddRule(string field, int start1, int end1, int start2, int end2)
         {

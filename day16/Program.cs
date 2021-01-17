@@ -39,11 +39,10 @@ namespace day16
             foreach (var l in k)
             {
                 var t = l.Split(',').Select(c => int.Parse(c)).ToArray();
-                System.Console.WriteLine(ticketValidator.IsTicketValid(t));
+                ticketValidator.IsTicketValid(t);
             }
-            //.Select(l => ticketValidator.IsTicketValid(l.Split(',').Select(c => int.Parse(c)).ToArray()));
 
-            //System.Console.WriteLine(k.Where(r => r).Count());
+            System.Console.WriteLine($"Part one: Ticket scanning error rate is {ticketValidator.TicketScanningErrorRate}");
         }
     }
 

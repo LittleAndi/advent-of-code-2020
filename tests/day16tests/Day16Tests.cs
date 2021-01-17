@@ -20,7 +20,7 @@ namespace day16tests
             ticketValidator.AddRule("class", 1, 3, 5, 7);
             ticketValidator.AddRule("row", 6, 11, 33, 44);
             ticketValidator.AddRule("seat", 13, 40, 45, 50);
-            ticketValidator.IsTicketValid(ticketInfo).ShouldBe(result);
+            ticketValidator.IsTicketValid(ticketInfo).ShouldBe(result, string.Join(',', ticketInfo));
         }
 
         [Fact]

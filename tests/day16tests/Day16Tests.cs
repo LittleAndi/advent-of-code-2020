@@ -24,6 +24,20 @@ namespace day16tests
         }
 
         [Fact]
+        public void TestTicketScanningErrorRate()
+        {
+            var ticketValidator = new TicketValidator();
+            ticketValidator.AddRule("class", 1, 3, 5, 7);
+            ticketValidator.AddRule("row", 6, 11, 33, 44);
+            ticketValidator.AddRule("seat", 13, 40, 45, 50);
+            ticketValidator.IsTicketValid(new int[] { 7, 3, 47 });
+            ticketValidator.IsTicketValid(new int[] { 40, 4, 50 });
+            ticketValidator.IsTicketValid(new int[] { 55, 2, 20 });
+            ticketValidator.IsTicketValid(new int[] { 38, 6, 12 });
+            ticketValidator.TicketScanningErrorRate.ShouldBe(71);
+        }
+
+        [Fact]
         public void TestPredicted()
         {
             var predicate = PredicateBuilder.False<int>();

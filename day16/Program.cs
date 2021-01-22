@@ -43,6 +43,8 @@ namespace day16
             }
 
             System.Console.WriteLine($"Part one: Ticket scanning error rate is {ticketValidator.TicketScanningErrorRate}");
+
+            ticketValidator.PrintRuleMatrix();
         }
     }
 
@@ -90,6 +92,19 @@ namespace day16
             var rule = rules[field];
             var positionValues = validTickets.Select(t => t[pos]).AsQueryable();
             return positionValues.Where(rule).Count() == positionValues.Count();
+        }
+
+        public void PrintRuleMatrix()
+        {
+            foreach (var rule in rules)
+            {
+                System.Console.Write($"{rule.Key}:\t");
+                for (int pos = 0; pos < validTickets[0].Count(); pos++)
+                {
+                    System.Console.Write($"{(TestRule(rule.Key, pos) ? 1 : 0)}\t");
+                }
+                System.Console.WriteLine();
+            }
         }
     }
     // http://www.albahari.com/nutshell/predicatebuilder.aspx

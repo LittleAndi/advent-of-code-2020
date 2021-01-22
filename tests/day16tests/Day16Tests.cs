@@ -48,5 +48,27 @@ namespace day16tests
             var filteredNumbes = numbers.AsQueryable().Where(predicate);
             filteredNumbes.ShouldBe(new List<int> { 1, 2, 3, 5, 6 });
         }
+
+        [Theory]
+        [InlineData("class", 0, false)]
+        [InlineData("class", 1, true)]
+        [InlineData("class", 2, false)]
+        [InlineData("row", 0, true)]
+        [InlineData("row", 1, false)]
+        [InlineData("row", 2, false)]
+        [InlineData("seat", 0, false)]
+        [InlineData("seat", 1, false)]
+        [InlineData("seat", 2, true)]
+        public void TestRule(string rule, int pos, bool result)
+        {
+            var ticketValidator = new TicketValidator();
+            ticketValidator.AddRule("class", 0, 1, 4, 19);
+            ticketValidator.AddRule("row", 0, 5, 8, 19);
+            ticketValidator.AddRule("seat", 0, 13, 16, 19);
+            ticketValidator.IsTicketValid(new int[] { 3, 9, 18 });
+            ticketValidator.IsTicketValid(new int[] { 15, 1, 5 });
+            ticketValidator.IsTicketValid(new int[] { 5, 14, 9 });
+            ticketValidator.TestRule(rule, pos).ShouldBe(result);
+        }
     }
 }

@@ -84,6 +84,11 @@ namespace day16
             predicate = predicate.Or(i => i >= start2 && i <= end2);
             rules.Add(predicate);
         }
+
+        public bool TestRule(string field, int pos)
+        {
+            return true;
+        }
     }
     // http://www.albahari.com/nutshell/predicatebuilder.aspx
     public static class PredicateBuilder

@@ -48,7 +48,7 @@ namespace day16
 
     public class TicketValidator
     {
-        List<Expression<Func<int, bool>>> rules = new List<Expression<Func<int, bool>>>();
+        Dictionary<string, Expression<Func<int, bool>>> rules = new Dictionary<string, Expression<Func<int, bool>>>();
         List<int> ticketScanningError = new List<int>();
         public int TicketScanningErrorRate => ticketScanningError.Sum();
         List<int[]> validTickets = new List<int[]>();
@@ -64,7 +64,7 @@ namespace day16
                 var t = new int[] { ticketValues[i] }.AsQueryable();
                 foreach (var rule in rules)
                 {
-                    if (t.Where(rule).Count() == 1) result = true;
+                    if (t.Where(rule.Value).Count() == 1) result = true;
                 }
 
                 if (!result)
@@ -82,7 +82,7 @@ namespace day16
             var predicate = PredicateBuilder.False<int>();
             predicate = predicate.Or(i => i >= start1 && i <= end1);
             predicate = predicate.Or(i => i >= start2 && i <= end2);
-            rules.Add(predicate);
+            rules.Add(field, predicate);
         }
 
         public bool TestRule(string field, int pos)

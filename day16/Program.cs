@@ -87,7 +87,9 @@ namespace day16
 
         public bool TestRule(string field, int pos)
         {
-            return true;
+            var rule = rules[field];
+            var positionValues = validTickets.Select(t => t[pos]).AsQueryable();
+            return positionValues.Where(rule).Count() == positionValues.Count();
         }
     }
     // http://www.albahari.com/nutshell/predicatebuilder.aspx

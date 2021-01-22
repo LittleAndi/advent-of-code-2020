@@ -22,7 +22,6 @@ namespace day16tests
             ticketValidator.AddRule("seat", 13, 40, 45, 50);
             ticketValidator.IsTicketValid(ticketInfo).ShouldBe(result, string.Join(',', ticketInfo));
         }
-
         [Fact]
         public void TestTicketScanningErrorRate()
         {
@@ -36,7 +35,6 @@ namespace day16tests
             ticketValidator.IsTicketValid(new int[] { 38, 6, 12 });
             ticketValidator.TicketScanningErrorRate.ShouldBe(71);
         }
-
         [Fact]
         public void TestPredicted()
         {
@@ -48,7 +46,6 @@ namespace day16tests
             var filteredNumbes = numbers.AsQueryable().Where(predicate);
             filteredNumbes.ShouldBe(new List<int> { 1, 2, 3, 5, 6 });
         }
-
         [Theory]
         [InlineData("class", 0, false)]
         [InlineData("class", 1, true)]
@@ -69,6 +66,18 @@ namespace day16tests
             ticketValidator.IsTicketValid(new int[] { 15, 1, 5 });
             ticketValidator.IsTicketValid(new int[] { 5, 14, 9 });
             ticketValidator.TestRule(rule, pos).ShouldBe(result, $"{rule} {pos}");
+        }
+        [Fact]
+        public void TestMatrix()
+        {
+            var ticketValidator = new TicketValidator();
+            ticketValidator.AddRule("class", 0, 1, 4, 19);
+            ticketValidator.AddRule("row", 0, 5, 8, 19);
+            ticketValidator.AddRule("seat", 0, 13, 16, 19);
+            ticketValidator.IsTicketValid(new int[] { 3, 9, 18 });
+            ticketValidator.IsTicketValid(new int[] { 15, 1, 5 });
+            ticketValidator.IsTicketValid(new int[] { 5, 14, 9 });
+            ticketValidator.GetFieldMatrix().ShouldBe(new int[,] { { 0, 1, 1 }, { 1, 1, 1 }, { 0, 0, 1 } });
         }
     }
 }

@@ -30,8 +30,14 @@ namespace day16
                 line++;
             }
 
-            line += 5;
+            line += 2;
 
+            // Read my ticket
+            var myTicket = lines.Skip(line).First().Split(',').Select(c => int.Parse(c)).ToArray();
+
+            line += 3;
+
+            // Read nearby tickets
             var k = lines
                         .Skip(line)
                         .Where(l => !string.IsNullOrWhiteSpace(l));
@@ -108,7 +114,7 @@ namespace day16
             return fieldMatrix;
         }
 
-        public Dictionary<string, int> GetResolveFields()
+        public Dictionary<string, int> GetResolvedFields()
         {
             var resolvedFields = new Dictionary<string, int>();
             var matrix = GetFieldMatrix();

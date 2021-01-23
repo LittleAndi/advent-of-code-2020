@@ -94,7 +94,7 @@ namespace day16tests
             ticketValidator.IsTicketValid(new int[] { 3, 9, 18 });
             ticketValidator.IsTicketValid(new int[] { 15, 1, 5 });
             ticketValidator.IsTicketValid(new int[] { 5, 14, 9 });
-            ticketValidator.GetResolveFields().OrderBy(d => d.Key).ShouldBe(
+            ticketValidator.GetResolvedFields().OrderBy(d => d.Key).ShouldBe(
                 new Dictionary<string, int> {
                     { "class", 1 },
                     { "row", 0 },

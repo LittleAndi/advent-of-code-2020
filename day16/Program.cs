@@ -50,6 +50,11 @@ namespace day16
 
             System.Console.WriteLine($"Part one: Ticket scanning error rate is {ticketValidator.TicketScanningErrorRate}");
 
+            var resolvedFields = ticketValidator.GetResolvedFields();
+            long productOfDepartureFields = 1;
+            resolvedFields.Where(field => field.Key.StartsWith("departure")).ToList().ForEach(field => productOfDepartureFields *= myTicket[field.Value]);
+
+            System.Console.WriteLine($"Part two: The product of departure fields from my ticket is {productOfDepartureFields}");
         }
     }
 

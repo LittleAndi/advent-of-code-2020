@@ -77,7 +77,31 @@ namespace day16tests
             ticketValidator.IsTicketValid(new int[] { 3, 9, 18 });
             ticketValidator.IsTicketValid(new int[] { 15, 1, 5 });
             ticketValidator.IsTicketValid(new int[] { 5, 14, 9 });
-            ticketValidator.GetFieldMatrix().ShouldBe(new int[,] { { 0, 1, 1 }, { 1, 1, 1 }, { 0, 0, 1 } });
+            ticketValidator.GetFieldMatrix().ShouldBe(
+                new Dictionary<string, int[]> {
+                    { "class",  new int[] { 0, 1, 1 } },
+                    { "row",    new int[] { 1, 1, 1 } },
+                    { "seat",   new int[] { 0, 0, 1 } },
+                });
         }
+        [Fact]
+        public void TestResolvedFields()
+        {
+            var ticketValidator = new TicketValidator();
+            ticketValidator.AddRule("class", 0, 1, 4, 19);
+            ticketValidator.AddRule("row", 0, 5, 8, 19);
+            ticketValidator.AddRule("seat", 0, 13, 16, 19);
+            ticketValidator.IsTicketValid(new int[] { 3, 9, 18 });
+            ticketValidator.IsTicketValid(new int[] { 15, 1, 5 });
+            ticketValidator.IsTicketValid(new int[] { 5, 14, 9 });
+            ticketValidator.GetResolveFields().OrderBy(d => d.Key).ShouldBe(
+                new Dictionary<string, int> {
+                    { "class", 1 },
+                    { "row", 0 },
+                    { "seat", 2 },
+                }
+            );
+        }
+
     }
 }

@@ -93,17 +93,36 @@ namespace day16
             return positionValues.Where(rule).Count() == positionValues.Count();
         }
 
-        public int[,] GetFieldMatrix()
+        public Dictionary<string, int[]> GetFieldMatrix()
         {
-            int[,] fieldMatrix = new int[rules.Count, rules.Count];
-            for (int ruleId = 0; ruleId < rules.Count; ruleId++)
+            Dictionary<string, int[]> fieldMatrix = new Dictionary<string, int[]>();
+            foreach (var rule in rules)
             {
+                int[] testresult = new int[rules.Count];
                 for (int pos = 0; pos < validTickets[0].Count(); pos++)
                 {
-                    fieldMatrix[ruleId, pos] = TestRule(rules.ElementAt(ruleId).Key, pos) ? 1 : 0;
+                    testresult[pos] = TestRule(rule.Key, pos) ? 1 : 0;
                 }
+                fieldMatrix.Add(rule.Key, testresult);
             }
             return fieldMatrix;
+        }
+
+        public Dictionary<string, int> GetResolveFields()
+        {
+            var resolvedFields = new Dictionary<string, int>();
+            var matrix = GetFieldMatrix();
+            var fieldCount = matrix.First().Value.Length;
+
+            // Loop positions, look for 1
+            for (int pos = 0; pos < fieldCount; pos++)
+            {
+                var sumOfPositions = matrix.Select(field => field.Value[pos]).Sum();
+                var field = matrix.First(field => field.Value.Sum() == (fieldCount + 1 - sumOfPositions));
+                resolvedFields.Add(field.Key, pos);
+            }
+
+            return resolvedFields;
         }
     }
     // http://www.albahari.com/nutshell/predicatebuilder.aspx

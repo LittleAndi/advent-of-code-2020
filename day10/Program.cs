@@ -31,7 +31,7 @@ namespace day10
             // Strategey: Analyze sequence of 1-jolt differences
             // 2 ones in a row (3 numbers involved) => 2 combinations
             // 3 ones in a row (4 numbers involved) => 4 combinations
-            // 3 ones in a row (5 numbers involved) => 7 combinations
+            // 4 ones in a row (5 numbers involved) => 7 combinations
             List<int> diffs = new List<int>();
             for (int i = 1; i < adaptersOutputJoltage.Count; i++)
             {
